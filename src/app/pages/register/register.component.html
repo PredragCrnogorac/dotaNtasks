@@ -1,0 +1,102 @@
+<div class=" content">
+  <div class=" row">
+    <div class=" col-md-2"></div>
+    <div class=" col-md-8">
+      <div class=" card">
+        <div class=" card-header">
+          <h5 class=" title">Edit Profile</h5>
+        </div>
+        <div class=" card-body">
+          <form [formGroup]="registerForm">
+            <div class=" row">
+              <div class=" col-md-6 pr-md-1">
+                <div class=" form-group">
+                  <label> Username </label>
+                  <input formControlName="username" class=" form-control" placeholder="Username" type="text"
+                    value="michael23" />
+                  <div *ngIf="(registerForm.controls['username'].invalid 
+                      && (registerForm.controls['username'].touched
+                    ||registerForm.controls['username'].dirty))">
+                    <p style="color: red">Username is required, min length 5, max length 15
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class=" col-md-6 pl-md-1">
+                <div class=" form-group">
+                  <label> Email address </label>
+                  <input formControlName="email" class=" form-control" placeholder="mike@email.com" type="email" />
+                  <div *ngIf="(registerForm.controls['email'].invalid 
+                      && (registerForm.controls['email'].touched
+                    ||registerForm.controls['email'].dirty))">
+                    <p style="color: red">Email is required, max length 20
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class=" row">
+              <div class=" col-md-6 pr-md-1">
+                <div class=" form-group">
+                  <label> First Name </label>
+                  <input formControlName="firstName" class=" form-control" placeholder="Company" type="text"
+                    value="Mike" />
+                  <div *ngIf="(registerForm.controls['firstName'].invalid 
+                      && (registerForm.controls['firstName'].touched
+                    ||registerForm.controls['firstName'].dirty))">
+                    <p style="color: red">First name is required, min length 2, max length 20
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class=" col-md-6 pl-md-1">
+                <div class=" form-group">
+                  <label> Last Name </label>
+                  <input formControlName="lastName" class=" form-control" placeholder="Last Name" type="text"
+                    value="Andrew" />
+                  <div *ngIf="(registerForm.controls['lastName'].invalid 
+                      && (registerForm.controls['lastName'].touched
+                    ||registerForm.controls['lastName'].dirty))">
+                    <p style="color: red">Last name is required, min length 2, max length 20
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class=" row">
+              <div class=" col-md-6 pr-md-1">
+                <div class=" form-group">
+                  <label> Password </label>
+                  <input formControlName="password" class=" form-control" type="password" />
+                  <div *ngIf="(registerForm.controls['password'].invalid 
+                      && (registerForm.controls['password'].touched
+                    ||registerForm.controls['password'].dirty))">
+                    <p style="color: red">Password required, min length 6, max length 20
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class=" col-md-6 pl-md-1">
+                <div class=" form-group">
+                  <label> Repeat password </label>
+                  <input formControlName="repeatPassword" class=" form-control" type="password" />
+                  <div *ngIf="(registerForm.controls['repeatPassword'].invalid 
+                      && (registerForm.controls['repeatPassword'].touched
+                    ||registerForm.controls['repeatPassword'].dirty))">
+                    <p style="color: red">Passwords do not match
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="register-button card-footer">
+          <button class="btn btn-fill btn-danger" (click)="register()" [disabled]="!registerForm.valid"
+            type="submit">Register</button>
+        </div>
+      </div>
+    </div>
+    <div class=" col-md-2"></div>
+  </div>
+  <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>

@@ -1,0 +1,58 @@
+.nowrapp{
+    white-space: nowrap;
+}
+.font-icon-detail:hover {
+    border-color: white;
+}
+.hero-primary-div{
+    background-repeat: no-repeat;
+    height: 6vh;
+    background-size: auto;
+    padding-left: 36px;
+    padding-top: 7px;
+    
+}
+.filterHeroes{
+    margin-right: 5px;
+}
+.filterHeroes:hover{
+    color: white;
+    cursor: pointer;
+}
+.hero-primary-str {
+    background-image: url(http://cdn.dota2.com/apps/dota2/images/heropedia/overviewicon_str.png);
+}
+.hero-primary-agi {
+    background-image: url(http://cdn.dota2.com/apps/dota2/images/heropedia/overviewicon_agi.png);
+}
+.hero-primary-int {
+    background-image: url(http://cdn.dota2.com/apps/dota2/images/heropedia/overviewicon_int.png);
+}
+
+.hero-title-wrap{
+    background: #130524;
+    color: #C0C0C0;
+    border-radius: 3px;
+    width: 70%;
+    margin: 0 auto;
+}
+.biobox{
+    background-image: url(http://cdn.dota2.com/apps/dota2/images/heropedia/biobox_hr.png);
+    background-repeat: no-repeat;
+    height: 1vh;
+}
+.hero-title{
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+.hero-title-role{
+    border-right: 1px solid #C0C0C0;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.hero-title-role:last-child{
+    border: none;
+}

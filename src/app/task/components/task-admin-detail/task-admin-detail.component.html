@@ -1,0 +1,112 @@
+<div class="content">
+  <div class=" row">
+    <div class=" col-lg-12 col-md-12">
+      <div class=" card">
+        <div class=" card-header">
+          <p-progressBar *ngIf="progressDisplay" mode="indeterminate" [style]="{'height': '10px'}"></p-progressBar>
+          <p-blockUI [blocked]="progressDisplay"></p-blockUI>
+          <div class="row">
+            <div class="col-lg-4 col-12">
+              <button pButton type="button" label="SAVE" icon="fa fa-floppy-o" iconPos="left" (click)="onSave()"
+                [disabled]="entityForm.invalid"></button>
+            </div>
+            <div class="col-lg-4 col-12">
+              <button pButton type="button" label="Send back to user" iconPos="left" (click)="undoneTask()"
+                *ngIf="!isNew && showUndone"></button>
+            </div>
+            <div class="col-lg-4 col-12">
+                <button pButton type="button" label="Delete" iconPos="left" (click)="showDelete()"
+                  *ngIf="!isNew"></button>
+              </div>
+          </div>
+        </div>
+        <div class=" card-body">
+
+          <form [formGroup]="entityForm">
+            <div class=" row">
+              <div class=" col-md-6 pr-md-1">
+                <div class=" form-group">
+                  <label> Task title: </label>
+                  <input formControlName="title" class=" form-control" placeholder="Task title" type="text" />
+                  <div *ngIf="(entityForm.controls['title'].invalid 
+                      && (entityForm.controls['title'].touched
+                    ||entityForm.controls['title'].dirty))">
+                    <p style="color: red">Title is required, min length 3, max length 15
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class=" col-md-6 pl-md-1">
+                <div class=" form-group">
+                  <label> Task explanation: </label>
+                  <input formControlName="explanation" class=" form-control" placeholder="Task explanation"
+                    type="text" />
+                  <div *ngIf="(entityForm.controls['explanation'].invalid 
+                      && (entityForm.controls['explanation'].touched
+                    ||entityForm.controls['explanation'].dirty))">
+                    <p style="color: red">Explanation is required, min length 10, max length 50
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class=" row">
+              <div class=" col-md-6">
+                <label> Asign user: </label><br>
+                <p-dropdown [filter]='true' [options]="users" formControlName="asignedId" optionLabel="displayName"
+                  [showClear]="true">
+                </p-dropdown>
+                <div *ngIf="(entityForm.controls['asignedId'].invalid 
+                      && (entityForm.controls['asignedId'].touched
+                    ||entityForm.controls['asignedId'].dirty))">
+                  <p style="color: red">User is required, choose one
+                  </p>
+                </div>
+              </div>
+              <div class=" col-md-6">
+
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div  class=" row">
+      <div class=" col-lg-12 col-md-12">
+        <div class=" card">
+          <div class=" card-header">
+          </div>
+          <div class=" card-body">
+
+            <p-table *ngIf="task && task.comment && !isNew" #dt [columns]="cols" [value]="task.comment" [paginator]="task.comment.length > 5" [rows]="5"
+              paginatorDropdownAppendTo="body" [rowsPerPageOptions]="[10, 20, 50]" [totalRecords]="task.comment.length"
+              selectionMode="single" [autoLayout]="true" responsive="true"
+              (onRowSelect)="onRowSelect($event)">
+              <ng-template pTemplate="caption">
+                Comments ({{
+                                    task.comment.length
+                                }})
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{ col.header }}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{ rowData.content }}</td>
+                  <td>{{ rowData.userId }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

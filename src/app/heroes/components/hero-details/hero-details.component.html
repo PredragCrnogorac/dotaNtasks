@@ -1,0 +1,123 @@
+<div class=" content">
+  <div class=" row">
+    <div class=" col-md-12">
+      <div class=" card">
+        <div class=" card-header">
+          <h1 style="text-align: center; color: #ffabc7">Hero</h1>
+          <div class="hero-portrait">
+            <img class="img-thumbnail img-fluid" src="./assets/img/heroes/{{hero?.image_full}}" />
+          </div>
+          <p class="roles">
+            <span class="hero-title-role" *ngFor="let role of hero?.roles">
+              {{role}}
+            </span>
+          </p>
+          <div class="hero-details-hr">
+          </div>
+        </div>
+        <div class=" card-body all-icons">
+          <h2 style="text-align: center; color: #fd5d93">OVERVIEW</h2>
+          <div class="hero-detail-content">
+            <div class="hero-detail-content-left">
+              <div class="hdcl-portrait">
+                <img class="img-fluid" id="border-detail" src="./assets/img/heroes/{{hero?.image_details}}" />
+              </div>
+              <div class="hdcl-stats">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-6">
+                      <img class="img-fluid" src="./assets/img/int.png" /> {{hero?.stats.int.base}} +
+                      {{hero?.stats.int.gain}}
+                    </div>
+                    <div class="col-6">
+                      <img class="img-fluid" src="./assets/img/dmg.png" /> {{hero?.min_dmg}} - {{hero?.max_dmg}}
+                    </div>
+                    <div class="col-6">
+                      <img class="img-fluid" src="./assets/img/agi.png" /> {{hero?.stats.agi.base}} +
+                      {{hero?.stats.agi.gain}}
+                    </div>
+                    <div class="col-6">
+                      <img class="img-fluid" src="./assets/img/ms.png" /> {{hero?.mov_speed}}
+                    </div>
+                    <div class="col-6">
+                      <img class="img-fluid" src="./assets/img/str.png" /> {{hero?.stats.str.base}} +
+                      {{hero?.stats.str.gain}}
+                    </div>
+                    <div class="col-6">
+                      <img class="img-fluid" src="./assets/img/armor.png" /> {{hero?.armor}}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="hero-detail-content-right">
+              <div class="container">
+                <div class="row hdcr-rows">
+                  <div class="col-2">
+                    <img class="img-fluid" src="./assets/img/heroes/{{hero?.skills.q.image}}">
+                  </div>
+                  <div class="col-10 hdcr-desc">
+                    <p class="hdcr-name">{{hero?.skills.q.name}}</p>
+                    <p>{{hero?.skills.q.description}}</p>
+                  </div>
+                </div>
+                <div class="row hdcr-rows">
+                  <div class="col-2">
+                    <img class="img-fluid" src="./assets/img/heroes/{{hero?.skills.w.image}}">
+                  </div>
+                  <div class="col-10 hdcr-desc">
+                    <p class="hdcr-name">{{hero?.skills.w.name}}</p>
+                    <p>{{hero?.skills.w.description}}</p>
+                  </div>
+                </div>
+                <div class="row hdcr-rows">
+                  <div class="col-2">
+                    <img class="img-fluid" src="./assets/img/heroes/{{hero?.skills.e.image}}">
+                  </div>
+                  <div class="col-10 hdcr-desc">
+                    <p class="hdcr-name">{{hero?.skills.e.name}}</p>
+                    <p>{{hero?.skills.e.description}}</p>
+                  </div>
+                </div>
+                <div class="row hdcr-rows">
+                  <div class="col-2">
+                    <img class="img-fluid" src="./assets/img/heroes/{{hero?.skills.r.image}}">
+                  </div>
+                  <div class="col-10 hdcr-desc">
+                    <p class="hdcr-name">{{hero?.skills.r.name}}</p>
+                    <p>{{hero?.skills.r.description}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h2 style="text-align: center; margin-top: 2vh; color: #fd5d93">HERO STATS</h2>
+          <div class="hero-detail-content">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                  <p-chart type="radar" [options]="options" [data]="data"></p-chart>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                  <app-stat-char *ngIf="display" [stats]="baseStats"></app-stat-char>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h2 style="text-align: center; margin-top: 2vh; color: #fd5d93">HERO SPOTLIGHT</h2>
+          <div class="hero-detail-content">
+            <div class="videoWrapper">
+              <div class="videoWrapperYt">
+                <youtube-player [videoId]="hero.video" (ready)="savePlayer($event)" width="100%" height="100%"
+                  (change)="onStateChange($event)">
+                </youtube-player>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

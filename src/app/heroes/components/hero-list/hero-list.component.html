@@ -1,0 +1,71 @@
+<div class=" content">
+  <div class=" row">
+    <div class=" col-md-12">
+      <div class=" card">
+        <div class="card-header">
+          <div class="hero-title-wrap">
+            <div class="hero-title">
+              <h1 style="text-align: center; margin-bottom: 0; color: #fd5d93;">
+                {{currentHero==undefined? 'Choose a Hero' : currentHero.name}}</h1>
+              <div class="biobox">
+              </div>
+              <p style="color: #fd5d93;" class="roles">
+                <span class="hero-title-role" *ngFor="let role of currentHero?.roles">
+                  {{role}}
+                </span>
+              </p>
+              <div>
+                <div style="text-align: center">
+                  <span class="filterHeroes"  (click)="toggleStr()">Strength</span>
+                  <span class="filterHeroes" (click)="toggleAgi()">Agility</span>
+                  <span  class="filterHeroes" (click)="toggleInt()">Inteligence</span>
+                  <span class="filterHeroes" (click)="toggleAll()">All</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class=" card-body all-icons">
+          <div class=" row">
+            <div class="col-12 hero-primary-div hero-primary-str">
+              Strength
+            </div>
+            <div [@popOverState]="stateNameStr" *ngFor="let hero of strHeroes" (click)="heroDetail()"
+              (mouseenter)='over($event)' class=" font-icon-list col-lg-1 col-md-2 col-sm-3 col-4">
+              <div class=" font-icon-detail">
+                <img class="img-fluid" src="./assets/img/heroes/{{hero.image_list}}" />
+                <p style="white-space: nowrap;">{{hero.name}}</p>
+              </div>
+            </div>
+          </div>
+          <div class=" row">
+
+            <div class="col-12 hero-primary-div hero-primary-agi">
+              Agility
+            </div>
+            <div [@popOverState]="stateNameAgi" *ngFor="let hero of agiHeroes" (click)="heroDetail()" (mouseenter)='over($event)'
+              class=" font-icon-list col-lg-1 col-md-2 col-sm-3 col-4">
+              <div class=" font-icon-detail">
+                <img class="img-fluid" src="./assets/img/heroes/{{hero.image_list}}" />
+                <p style="white-space: nowrap;">{{hero.name}}</p>
+              </div>
+            </div>
+          </div>
+          <div class=" row">
+            <div class="col-12 hero-primary-div hero-primary-int">
+              Inteligence
+            </div>
+            <div [@popOverState]="stateNameInt" *ngFor="let hero of intHeroes" (click)="heroDetail()" (mouseenter)='over($event)'
+              class=" font-icon-list col-lg-1 col-md-2 col-sm-3 col-4">
+              <div class=" font-icon-detail">
+                <img class="img-fluid" src="./assets/img/heroes/{{hero.image_list}}" />
+                <p style="white-space: nowrap;">{{hero.name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

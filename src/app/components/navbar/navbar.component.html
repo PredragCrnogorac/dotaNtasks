@@ -1,0 +1,69 @@
+<nav class=" navbar navbar-expand-lg navbar-absolute navbar-transparent">
+  <div class=" container-fluid">
+    <div class=" navbar-wrapper">
+      <div class=" navbar-toggle d-inline">
+        <button class=" navbar-toggler" type="button" (click)="sidebarToggle()">
+          <span class=" navbar-toggler-bar bar1"> </span>
+          <span class=" navbar-toggler-bar bar2"> </span>
+          <span class=" navbar-toggler-bar bar3"> </span>
+        </button>
+      </div>
+      <a class=" navbar-brand" href="javascript:void(0)"> <img style="width: 10vh;"
+          src="./assets/img/toppng.com-dota-2-logo-400x300.png" /> </a>
+    </div>
+    <button aria-label="Toggle navigation" class=" navbar-toggler" (click)="collapse()"
+      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" id="navigation" type="button">
+      <span class=" navbar-toggler-bar navbar-kebab"> </span>
+      <span class=" navbar-toggler-bar navbar-kebab"> </span>
+      <span class=" navbar-toggler-bar navbar-kebab"> </span>
+    </button>
+    <div class=" navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
+      <ul class=" navbar-nav ml-auto">
+        <li class=" nav-item" ngbDropdown>
+          <a class=" nav-link" data-toggle="dropdown" href="javascript:void(0)" ngbDropdownToggle>
+            <div *ngIf="auth.user$ | async as user; else defaultimg;" class=" photo">
+              <img alt="Profile Photo" src="{{user.photoURL }}" />
+            </div>
+            <ng-template #defaultimg>
+              <div class=" photo">
+                <img alt="Profile Photo" src="assets/img/anime3.png" />
+              </div>
+            </ng-template>
+            <b class=" caret d-none d-lg-block d-xl-block"> </b>
+            <p class=" d-lg-none">Log out</p>
+          </a>
+          <ul style="text-align: center" class=" dropdown-navbar" ngbDropdownMenu>
+            <div *ngIf="auth.user$ | async as user; else login">
+              <li class=" nav-link">
+                <button (click)="auth.signOut()" class=" widthnav nav-item btn btn-sm btn-info">Sign out</button>
+              </li>
+            </div>
+            <ng-template #login>
+              <form style="color: black" [formGroup]="loginForm">
+                <li class=" nav-link">
+                  <input formControlName="email" style="color: black;" type="text" class="form-control widthnav nav-item" placeholder="Email" aria-label="Username">
+                </li>
+                <li class=" dropdown-divider"></li>
+                <li class=" nav-link">
+                  <input formControlName="password" style="color: black;" type="password" class="form-control widthnav nav-item" placeholder="Password"
+                    aria-label="Password">
+                </li>
+                <li class=" dropdown-divider"></li>
+                <button type="submit" [disabled]="!loginForm.valid" (click)="emailLogin()" class="widthnav nav-item btn btn-sm btn-info">Sign in</button>
+              </form>
+              <li class=" dropdown-divider"></li>
+              <li style="text-align: center; color: black;" class=" nav-link">
+                <p style="color: black;">Sign in with</p>
+              </li>
+              <li class=" dropdown-divider"></li>
+              <li class=" nav-link">
+                <button (click)="auth.googleLogin()" class="widthnav nav-item btn btn-sm btn-info">Google</button>
+              </li>
+            </ng-template>
+          </ul>
+        </li>
+        <li class=" separator d-lg-none"></li>
+      </ul>
+    </div>
+  </div>
+</nav>
